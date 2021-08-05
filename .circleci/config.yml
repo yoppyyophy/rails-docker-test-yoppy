@@ -1,16 +1,16 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@1.1.2
+	ruby: circleci/ruby@1.1.2
 
 jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.7
-    working_directory: ~/rails-docker-test-yoppy/src
-    steps:
-      - checkout:
-          path: ~/rails-docker-test-yoppy
-      - ruby/install-deps
+	build:
+		docker:
+			- image: circleci/ruby:2.7
+		working_directory: ~/rails-docker-test-yoppy/src
+		steps:
+			- checkout:
+					path: ~/rails-docker-test-yoppy
+			- ruby/install-deps
 
 	test:
 		docker:
@@ -38,10 +38,10 @@ jobs:
 					command: bundle exec rake test
 
 workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+	version: 2
+	build_and_test:
+		jobs:
+			- build
+			- test:
+					requires:
+						- build
